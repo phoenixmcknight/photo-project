@@ -10,11 +10,26 @@ import UIKit
 
 class InitialPhotoViewController: UIViewController {
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func actionButton(_ sender: UIBarButtonItem) {
+        
+        if #available(iOS 13.0, *) {
+            if  let newImageStoryBoard = storyboard?.instantiateViewController(identifier: "ViewControllerNewImage") as? ViewControllerNewImage {
+                
+                self.present(newImageStoryBoard, animated: true,completion: nil)
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        
+    }
+    
 }
 

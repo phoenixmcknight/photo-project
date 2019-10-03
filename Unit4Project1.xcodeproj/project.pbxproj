@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		692A7C3F23468EC900DF41B9 /* PhotoJournalWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A7C3E23468EC900DF41B9 /* PhotoJournalWrapper.swift */; };
+		692A7C412346900000DF41B9 /* ViewControllerNewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A7C402346900000DF41B9 /* ViewControllerNewImage.swift */; };
 		693D1B26234656BB0008E9A6 /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693D1B25234656BB0008E9A6 /* PersistenceHelper.swift */; };
 		69FDEA4B233EA1490092C5B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FDEA4A233EA1490092C5B4 /* AppDelegate.swift */; };
 		69FDEA4D233EA1490092C5B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FDEA4C233EA1490092C5B4 /* ViewController.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		692A7C3E23468EC900DF41B9 /* PhotoJournalWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoJournalWrapper.swift; path = Unit4Project1/Persistence/PhotoJournalWrapper.swift; sourceTree = SOURCE_ROOT; };
+		692A7C402346900000DF41B9 /* ViewControllerNewImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerNewImage.swift; path = Unit4Project1/Persistence/ViewControllerNewImage.swift; sourceTree = SOURCE_ROOT; };
 		693D1B25234656BB0008E9A6 /* PersistenceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
 		69FDEA47233EA1490092C5B4 /* Unit4Project1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unit4Project1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69FDEA4A233EA1490092C5B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +83,7 @@
 		693D1B1F2346555D0008E9A6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				692A7C3E23468EC900DF41B9 /* PhotoJournalWrapper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -95,6 +100,7 @@
 		693D1B212346557E0008E9A6 /* Detail View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				692A7C402346900000DF41B9 /* ViewControllerNewImage.swift */,
 			);
 			path = "Detail View Controllers";
 			sourceTree = "<group>";
@@ -309,6 +315,8 @@
 			files = (
 				69FDEA4D233EA1490092C5B4 /* ViewController.swift in Sources */,
 				693D1B26234656BB0008E9A6 /* PersistenceHelper.swift in Sources */,
+				692A7C3F23468EC900DF41B9 /* PhotoJournalWrapper.swift in Sources */,
+				692A7C412346900000DF41B9 /* ViewControllerNewImage.swift in Sources */,
 				69FDEA4B233EA1490092C5B4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
