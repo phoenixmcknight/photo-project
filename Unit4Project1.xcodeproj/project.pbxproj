@@ -74,6 +74,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		693D1B1F2346555D0008E9A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		693D1B202346556B0008E9A6 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				693D1B212346557E0008E9A6 /* Detail View Controllers */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		693D1B212346557E0008E9A6 /* Detail View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Detail View Controllers";
+			sourceTree = "<group>";
+		};
+		693D1B22234655860008E9A6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		693D1B232346558D0008E9A6 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		693D1B242346559A0008E9A6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		69FDEA3E233EA1490092C5B4 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +140,11 @@
 		69FDEA49233EA1490092C5B4 /* Unit4Project1 */ = {
 			isa = PBXGroup;
 			children = (
+				693D1B242346559A0008E9A6 /* Views */,
+				693D1B232346558D0008E9A6 /* Persistence */,
+				693D1B22234655860008E9A6 /* Helpers */,
+				693D1B202346556B0008E9A6 /* View Controllers */,
+				693D1B1F2346555D0008E9A6 /* Model */,
 				69FDEA4A233EA1490092C5B4 /* AppDelegate.swift */,
 				69FDEA4C233EA1490092C5B4 /* ViewController.swift */,
 				69FDEA4E233EA1490092C5B4 /* Main.storyboard */,
