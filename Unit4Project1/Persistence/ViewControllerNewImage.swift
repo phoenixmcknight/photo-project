@@ -17,6 +17,7 @@ class ViewControllerNewImage:UIViewController {
     
     @IBOutlet weak var saveButtonOutlet: UIButton!
     
+    var addOrEdit:destructiveChanges!
     
     var textFieldText:String! {
         didSet {
@@ -60,12 +61,21 @@ class ViewControllerNewImage:UIViewController {
     }
     
     @IBAction func saveButton(_ sender: UIButton) {
+      
+        switch addOrEdit {
+        case .add:
+            let data = imageOutlet.image!.pngData()
+                   
+                   let photo = PhotoWrapper(createDate: currentDate(), message: textFieldText, picture: data!)
+                   
+                 try?  PhotoPersistenceManager.manager.saveFilm(photo: photo)
+                   print("saving")
+        case .edit:
         let data = imageOutlet.image!.pngData()
+
+        }
         
-        let photo = PhotoWrapper(createDate: currentDate(), message: textFieldText, picture: data!)
-        
-      try?  PhotoPersistenceManager.manager.saveFilm(photo: photo)
-        print("saving")
+       
         dismiss(animated: true, completion: nil)
     }
     

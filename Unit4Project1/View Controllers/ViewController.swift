@@ -21,9 +21,9 @@ class InitialPhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       //loadPhotos()
         setUP()
         collectionViewOutlet.reloadData()
+        navigationItem.title = "Photos"
         // Do any additional setup after loading the view.
     }
     
@@ -50,6 +50,9 @@ class InitialPhotoViewController: UIViewController {
     @IBAction func actionButton(_ sender: UIBarButtonItem) {
         
             if  let newImageStoryBoard = storyboard?.instantiateViewController(identifier: "ViewControllerNewImage") as? ViewControllerNewImage {
+                
+                newImageStoryBoard.addOrEdit = destructiveChanges.add
+                newImageStoryBoard.modalPresentationStyle = .currentContext
                 
                 self.present(newImageStoryBoard, animated: true,completion: nil)
             }
@@ -79,7 +82,7 @@ extension InitialPhotoViewController: UICollectionViewDelegate,UICollectionViewD
         
         
   cell.InititalViewControllerImage.image = UIImage(data: photosPath.picture)
-
+        CustomLayer.shared.createCustomlayer(layer: cell.layer)
         cell.dateCreatedLabel.text = photosPath.createDate
         cell.descriptionLabel.text = photosPath.message
         cell.backgroundColor = colorGenerator()
@@ -98,7 +101,7 @@ extension InitialPhotoViewController:InitialViewControllerCollectionViewCellCell
     func actionSheet(tag: Int) {
         let optionmenu = UIAlertController(title: "Options", message: "Choose option", preferredStyle: .actionSheet)
 
-        let deleteFilmAction = UIAlertAction(title: "Delete", style: .default) { (action) in
+        let deleteFilmAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
             let photo = self.photos[tag]
             
          try?   PhotoPersistenceManager.manager.deleteFavorite(withID: photo.createDate)
@@ -111,10 +114,19 @@ extension InitialPhotoViewController:InitialViewControllerCollectionViewCellCell
             let share = UIActivityViewController(activityItems: [image!], applicationActivities: [])
             self.present(share, animated: true, completion: nil)
         }
+        let editAction = UIAlertAction(title: "Edit", style: .destructive) { (action) in
+            if  let newImageStoryBoard = self.storyboard?.instantiateViewController(identifier: "ViewControllerNewImage") as? ViewControllerNewImage {
+                
+                newImageStoryBoard.modalPresentationStyle = .currentContext
+                
+                self.present(newImageStoryBoard, animated: true,completion: nil)
+            }
+        }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         optionmenu.addAction(deleteFilmAction)
         optionmenu.addAction(cancelAction)
         optionmenu.addAction(shareAction)
+        optionmenu.addAction(editAction)
         self.present(optionmenu, animated: true, completion: nil)
     }
 

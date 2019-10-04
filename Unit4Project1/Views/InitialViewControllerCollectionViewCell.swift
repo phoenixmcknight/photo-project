@@ -32,5 +32,7 @@ class InitialViewControllerCollectionViewCell: UICollectionViewCell {
     @IBAction func actionButton(_ sender: UIButton) {
         delegate?.actionSheet(tag: sender.tag)
     }
+    
+    
 }
 
