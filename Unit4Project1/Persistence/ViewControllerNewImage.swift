@@ -15,9 +15,29 @@ class ViewControllerNewImage:UIViewController {
     
     @IBOutlet weak var imageOutlet: UIImageView!
     
+    @IBOutlet weak var saveButtonOutlet: UIButton!
+    
+    
+    var textFieldText:String! {
+        didSet {
+            
+            if self.textFieldText != "" && self.textFieldText != nil {
+            saveButtonOutlet.isEnabled = true
+            } else {
+                saveButtonOutlet.isEnabled = false
+            }
+    }
+    }
+   
+   
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageOutlet.image = UIImage(named: "image")
+        saveButtonOutlet.isEnabled = false
+        textFieldDescription.delegate = self
+        //imageOutlet.image = UIImage(named: "image")
+        
     }
     @IBAction func cancelButton(_ sender: UIButton) {
         self.dismiss(animated: true,completion: nil)    }
@@ -29,13 +49,28 @@ class ViewControllerNewImage:UIViewController {
                    imagePicker.allowsEditing = true
                    imagePicker.delegate = self
               self.present(imagePicker,animated: true,completion: nil)
-                //{
-//                  try? ImagePersistenceHelper.manager.save(newImage: self.randomUser[indexPath.row])
-                  //Save to file manager
-              
         
     
     }
+    private func currentDate()->String{
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy HH:mm:ss"
+        return formatter.string(from: date)
+    }
+    
+    @IBAction func saveButton(_ sender: UIButton) {
+        let data = imageOutlet.image!.pngData()
+        
+        let photo = PhotoWrapper(createDate: currentDate(), message: textFieldText, picture: data!)
+        
+      try?  PhotoPersistenceManager.manager.saveFilm(photo: photo)
+        print("saving")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
 }
     
 extension ViewControllerNewImage: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -50,8 +85,18 @@ extension ViewControllerNewImage: UIImagePickerControllerDelegate, UINavigationC
         
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-           dismiss(animated: true, completion: nil)
-       }
-
-  
+        dismiss(animated: true, completion:nil)
+}
+}
+extension ViewControllerNewImage:UITextFieldDelegate {
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//
+//        textFieldText = textField.text
+//
+//        return true
+//}
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        textFieldText = textField.text
+        return true
+    }
 }

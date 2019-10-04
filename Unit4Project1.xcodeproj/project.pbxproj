@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		692A7C3F23468EC900DF41B9 /* PhotoJournalWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A7C3E23468EC900DF41B9 /* PhotoJournalWrapper.swift */; };
 		692A7C412346900000DF41B9 /* ViewControllerNewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A7C402346900000DF41B9 /* ViewControllerNewImage.swift */; };
+		692A7C43234785F800DF41B9 /* ImagePersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A7C42234785F800DF41B9 /* ImagePersistenceHelper.swift */; };
+		692A7C472347937B00DF41B9 /* InitialViewControllerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A7C462347937B00DF41B9 /* InitialViewControllerCollectionViewCell.swift */; };
 		693D1B26234656BB0008E9A6 /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693D1B25234656BB0008E9A6 /* PersistenceHelper.swift */; };
 		69FDEA4B233EA1490092C5B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FDEA4A233EA1490092C5B4 /* AppDelegate.swift */; };
 		69FDEA4D233EA1490092C5B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FDEA4C233EA1490092C5B4 /* ViewController.swift */; };
@@ -39,6 +41,8 @@
 /* Begin PBXFileReference section */
 		692A7C3E23468EC900DF41B9 /* PhotoJournalWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoJournalWrapper.swift; path = Unit4Project1/Persistence/PhotoJournalWrapper.swift; sourceTree = SOURCE_ROOT; };
 		692A7C402346900000DF41B9 /* ViewControllerNewImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerNewImage.swift; path = Unit4Project1/Persistence/ViewControllerNewImage.swift; sourceTree = SOURCE_ROOT; };
+		692A7C42234785F800DF41B9 /* ImagePersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePersistenceHelper.swift; sourceTree = "<group>"; };
+		692A7C462347937B00DF41B9 /* InitialViewControllerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewControllerCollectionViewCell.swift; sourceTree = "<group>"; };
 		693D1B25234656BB0008E9A6 /* PersistenceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
 		69FDEA47233EA1490092C5B4 /* Unit4Project1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unit4Project1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69FDEA4A233EA1490092C5B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				693D1B25234656BB0008E9A6 /* PersistenceHelper.swift */,
+				692A7C42234785F800DF41B9 /* ImagePersistenceHelper.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				69FDEA4E233EA1490092C5B4 /* Main.storyboard */,
+				692A7C462347937B00DF41B9 /* InitialViewControllerCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,6 +324,8 @@
 				692A7C3F23468EC900DF41B9 /* PhotoJournalWrapper.swift in Sources */,
 				692A7C412346900000DF41B9 /* ViewControllerNewImage.swift in Sources */,
 				69FDEA4B233EA1490092C5B4 /* AppDelegate.swift in Sources */,
+				692A7C43234785F800DF41B9 /* ImagePersistenceHelper.swift in Sources */,
+				692A7C472347937B00DF41B9 /* InitialViewControllerCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,7 +431,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -478,7 +486,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
