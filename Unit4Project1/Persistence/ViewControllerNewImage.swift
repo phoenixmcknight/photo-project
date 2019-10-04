@@ -89,14 +89,11 @@ extension ViewControllerNewImage: UIImagePickerControllerDelegate, UINavigationC
 }
 }
 extension ViewControllerNewImage:UITextFieldDelegate {
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//
-//        textFieldText = textField.text
-//
-//        return true
-//}
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
         textFieldText = textField.text
+
         return true
-    }
+}
+  
 }

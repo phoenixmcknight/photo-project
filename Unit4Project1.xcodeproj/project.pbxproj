@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69182D8D2347D69F00548172 /* RGBColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69182D8C2347D69F00548172 /* RGBColors.swift */; };
 		692A7C3F23468EC900DF41B9 /* PhotoJournalWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A7C3E23468EC900DF41B9 /* PhotoJournalWrapper.swift */; };
 		692A7C412346900000DF41B9 /* ViewControllerNewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A7C402346900000DF41B9 /* ViewControllerNewImage.swift */; };
 		692A7C43234785F800DF41B9 /* ImagePersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A7C42234785F800DF41B9 /* ImagePersistenceHelper.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		69182D8C2347D69F00548172 /* RGBColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBColors.swift; sourceTree = "<group>"; };
 		692A7C3E23468EC900DF41B9 /* PhotoJournalWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoJournalWrapper.swift; path = Unit4Project1/Persistence/PhotoJournalWrapper.swift; sourceTree = SOURCE_ROOT; };
 		692A7C402346900000DF41B9 /* ViewControllerNewImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerNewImage.swift; path = Unit4Project1/Persistence/ViewControllerNewImage.swift; sourceTree = SOURCE_ROOT; };
 		692A7C42234785F800DF41B9 /* ImagePersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePersistenceHelper.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				692A7C3E23468EC900DF41B9 /* PhotoJournalWrapper.swift */,
+				69182D8C2347D69F00548172 /* RGBColors.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				69FDEA4B233EA1490092C5B4 /* AppDelegate.swift in Sources */,
 				692A7C43234785F800DF41B9 /* ImagePersistenceHelper.swift in Sources */,
 				692A7C472347937B00DF41B9 /* InitialViewControllerCollectionViewCell.swift in Sources */,
+				69182D8D2347D69F00548172 /* RGBColors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

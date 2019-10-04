@@ -21,4 +21,12 @@ struct PhotoPersistenceManager {
     func getFilm() throws -> [PhotoWrapper] {
       return try persistenceHelper.getObjects()
     }
+    
+    func deleteFavorite(withID: String) throws {
+           do {
+               let photos = try getFilm()
+            let newPhotos = photos.filter { $0.createDate != withID }
+               try persistenceHelper.replace(elements: newPhotos)
+           }
+       }
 }

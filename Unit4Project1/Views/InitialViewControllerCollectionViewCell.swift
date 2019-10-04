@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol  InitialViewControllerCollectionViewCellCellDelegate:AnyObject {
+    func actionSheet(tag:Int)
+    
+}
+
 class InitialViewControllerCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var
@@ -18,4 +23,14 @@ class InitialViewControllerCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dateCreatedLabel: UILabel!
     
     @IBOutlet weak var initialViewControllerButtonOutlet: UIButton!
+    
+    weak var delegate:InitialViewControllerCollectionViewCellCellDelegate?
+    
+    
+    @IBOutlet weak var buttonOutlet: UIButton!
+    
+    @IBAction func actionButton(_ sender: UIButton) {
+        delegate?.actionSheet(tag: sender.tag)
+    }
 }
+

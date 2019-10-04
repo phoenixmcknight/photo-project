@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6qa-9r-6jY">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -19,7 +18,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7ue-nI-fjB">
                                 <rect key="frame" x="0.0" y="88" width="414" height="759"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GB7-WV-y3l">
                                     <size key="itemSize" width="250" height="250"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -54,7 +53,13 @@
                                                                         <constraint firstAttribute="width" constant="80" id="Vs3-Dn-gUW"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                                    <state key="normal" title="..."/>
+                                                                    <state key="normal" title="...">
+                                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="heavy"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <action selector="actionButton:" destination="E7X-cT-nv6" eventType="touchUpInside" id="vfo-sz-rCp"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
@@ -91,6 +96,7 @@
                                         <size key="customSize" width="250" height="250"/>
                                         <connections>
                                             <outlet property="InititalViewControllerImage" destination="k6b-8N-gmU" id="HEj-Ay-rsB"/>
+                                            <outlet property="buttonOutlet" destination="mfk-7M-SdC" id="frt-Ee-jfi"/>
                                             <outlet property="dateCreatedLabel" destination="rye-Uv-gO8" id="Cth-G6-MNK"/>
                                             <outlet property="descriptionLabel" destination="0JR-CO-GQ6" id="uDR-dR-sDM"/>
                                             <outlet property="initialViewControllerButtonOutlet" destination="mfk-7M-SdC" id="wsb-x3-F8t"/>
@@ -111,7 +117,7 @@
                                 </items>
                             </toolbar>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="7ue-nI-fjB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4tc-fN-jIl"/>
                             <constraint firstItem="4Y0-AC-wyK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="A4l-Q5-Z4d"/>
