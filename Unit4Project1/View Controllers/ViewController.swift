@@ -10,7 +10,7 @@ import UIKit
 
 class InitialPhotoViewController: UIViewController {
 
-   
+   // add button fuction random color
     @IBOutlet  var collectionViewOutlet: UICollectionView!
     
     var photos = [PhotoWrapper]() {
