@@ -38,7 +38,7 @@ class InitialPhotoViewController: UIViewController {
            do {
                photos = try
 
-                   PhotoPersistenceManager.manager.getFilm()
+                   PhotoPersistenceManager.manager.getPhoto()
                collectionViewOutlet.reloadData()
                print("loading")
 
@@ -51,7 +51,7 @@ class InitialPhotoViewController: UIViewController {
         
             if  let newImageStoryBoard = storyboard?.instantiateViewController(identifier: "ViewControllerNewImage") as? ViewControllerNewImage {
                 
-                newImageStoryBoard.addOrEdit = destructiveChanges.add
+                newImageStoryBoard.addOrEdit = Changes.add
                 newImageStoryBoard.modalPresentationStyle = .currentContext
                 
                 self.present(newImageStoryBoard, animated: true,completion: nil)
@@ -103,11 +103,10 @@ extension InitialPhotoViewController:InitialViewControllerCollectionViewCellCell
 
         let deleteFilmAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
             let photo = self.photos[tag]
-            
-         try?   PhotoPersistenceManager.manager.deleteFavorite(withID: photo.createDate)
-            self.loadPhotos()
-           
-            
+         
+            self.photos.remove(at: tag)
+
+         try?   PhotoPersistenceManager.manager.deleteFunction(withID: photo.createDate)
         }
         let shareAction = UIAlertAction(title: "Share", style: .default) { (action) in
             let image = UIImage(data: self.photos[tag].picture)
@@ -116,6 +115,9 @@ extension InitialPhotoViewController:InitialViewControllerCollectionViewCellCell
         }
         let editAction = UIAlertAction(title: "Edit", style: .destructive) { (action) in
             if  let newImageStoryBoard = self.storyboard?.instantiateViewController(identifier: "ViewControllerNewImage") as? ViewControllerNewImage {
+                
+                newImageStoryBoard.addOrEdit = .edit
+                newImageStoryBoard.currentTag = tag
                 
                 newImageStoryBoard.modalPresentationStyle = .currentContext
                 

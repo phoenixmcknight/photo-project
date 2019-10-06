@@ -13,6 +13,6 @@ import Foundation
 
 struct PhotoWrapper:Codable {
     let createDate:String
-    let message:String
-    let picture:Data
+    var message:String
+    var picture:Data
 }

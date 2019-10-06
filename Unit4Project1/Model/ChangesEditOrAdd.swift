@@ -8,11 +8,30 @@
 
 import Foundation
 
-enum destructiveChanges:String {
+enum Changes:String {
     case add = "add"
     case edit = "edit"
     
   
 }
 
+struct Edit {
+
+    static let shared = Edit()
+    
+    func startMessage(changes: Changes,tag:Int) -> String {
+        switch changes {
+        case .add:
+            return ""
+        case .edit:
+            let message = try? PhotoPersistenceManager.manager.getPhoto()[tag]
+            if let messageFromPhoto = message {
+                return messageFromPhoto.message
+            } else {
+                return ""
+            }
+        }
+    
+    }
+}
 

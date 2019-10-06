@@ -17,7 +17,9 @@ class ViewControllerNewImage:UIViewController {
     
     @IBOutlet weak var saveButtonOutlet: UIButton!
     
-    var addOrEdit:destructiveChanges!
+    var addOrEdit:Changes!
+    
+    var currentTag:Int! = 0
     
     var textFieldText:String! {
         didSet {
@@ -37,7 +39,9 @@ class ViewControllerNewImage:UIViewController {
         super.viewDidLoad()
         saveButtonOutlet.isEnabled = false
         textFieldDescription.delegate = self
-        //imageOutlet.image = UIImage(named: "image")
+        textFieldDescription.text = Edit.shared.startMessage(changes: addOrEdit, tag: currentTag)
+        textFieldText = Edit.shared.startMessage(changes: addOrEdit, tag: currentTag)
+        imageOutlet.image = UIImage(named: "image")
         
     }
     @IBAction func cancelButton(_ sender: UIButton) {
@@ -68,11 +72,31 @@ class ViewControllerNewImage:UIViewController {
                    
                    let photo = PhotoWrapper(createDate: currentDate(), message: textFieldText, picture: data!)
                    
-                 try?  PhotoPersistenceManager.manager.saveFilm(photo: photo)
+                 try?  PhotoPersistenceManager.manager.savePhoto(photo: photo)
                    print("saving")
         case .edit:
-        let data = imageOutlet.image!.pngData()
-
+        let photoData = imageOutlet.image!.pngData()
+      var newPhoto =  try? PhotoPersistenceManager.manager.editFunction(tag: currentTag)
+            
+        newPhoto?.message = textFieldText
+        newPhoto?.picture = photoData!
+        
+//        try? PhotoPersistenceManager.manager.deleteFunction(withID: PhotoPersistenceManager.manager.getPhoto()[currentTag].createDate)
+   
+        let intitalVC = storyboard?.instantiateViewController(identifier: "InitialPhotoViewController") as! InitialPhotoViewController
+        
+       var photo = try? PhotoPersistenceManager.manager.getPhoto()
+        photo?.insert(newPhoto!, at: currentTag )
+        photo?.remove(at: currentTag + 1)
+        
+            
+       
+            
+        intitalVC.photos = photo!
+            
+       
+        default:
+           print("failed")
         }
         
        
