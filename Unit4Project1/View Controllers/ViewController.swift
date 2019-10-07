@@ -22,7 +22,7 @@ class InitialPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUP()
-        collectionViewOutlet.reloadData()
+        //collectionViewOutlet.reloadData()
         navigationItem.title = "Photos"
         // Do any additional setup after loading the view.
     }
@@ -118,7 +118,7 @@ extension InitialPhotoViewController:InitialViewControllerCollectionViewCellCell
                 
                 newImageStoryBoard.addOrEdit = .edit
                 newImageStoryBoard.currentTag = tag
-                
+                newImageStoryBoard.passingInfoPhotos = self.photos
                 newImageStoryBoard.modalPresentationStyle = .currentContext
                 
                 self.present(newImageStoryBoard, animated: true,completion: nil)

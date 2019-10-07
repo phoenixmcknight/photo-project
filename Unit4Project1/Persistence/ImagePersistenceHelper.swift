@@ -30,9 +30,16 @@ struct PhotoPersistenceManager {
            }
        }
     
+    func replaceAllFunction(newPhoto:[PhotoWrapper]) throws {
+        do {
+            try persistenceHelper.replace(elements: newPhoto)
+            
+        }
+    }
+    
     func editFunction(tag:Int) throws -> PhotoWrapper {
         do {
-            var newphoto = try getPhoto()[tag]
+            let newphoto = try getPhoto()[tag]
           
             
             
@@ -40,7 +47,5 @@ struct PhotoPersistenceManager {
 
         }
     }
-    func savePhoto2(photo:PhotoWrapper,tag:Int) throws {
-        try persistenceHelper.save(newElement: photo)
-     }
+    
 }

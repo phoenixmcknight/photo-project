@@ -228,7 +228,7 @@
                         <viewLayoutGuide key="safeArea" id="RPz-bG-C7z"/>
                     </view>
                     <connections>
-                        <outlet property="imageOutlet" destination="hgg-Dn-N6C" id="OFV-8v-jMU"/>
+                        <outlet property="newImageOutlet" destination="hgg-Dn-N6C" id="9mu-IW-UFt"/>
                         <outlet property="saveButtonOutlet" destination="38q-hX-71z" id="R0J-50-8X7"/>
                         <outlet property="textFieldDescription" destination="LdH-fm-a3y" id="kFh-tM-4SI"/>
                     </connections>

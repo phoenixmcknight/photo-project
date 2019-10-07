@@ -13,7 +13,7 @@ class ViewControllerNewImage:UIViewController {
    
     @IBOutlet weak var textFieldDescription: UITextField!
     
-    @IBOutlet weak var imageOutlet: UIImageView!
+    @IBOutlet weak var newImageOutlet: UIImageView!
     
     @IBOutlet weak var saveButtonOutlet: UIButton!
     
@@ -21,14 +21,17 @@ class ViewControllerNewImage:UIViewController {
     
     var currentTag:Int! = 0
     
+    var passingInfoPhotos:[PhotoWrapper]!
+    
     var textFieldText:String! {
         didSet {
-            
-            if self.textFieldText != "" && self.textFieldText != nil {
+           
+//            if self.textFieldText != "" && self.textFieldText != nil {
+//            saveButtonOutlet.isEnabled = true
+//            } else {
+//                saveButtonOutlet.isEnabled = false
+//            }
             saveButtonOutlet.isEnabled = true
-            } else {
-                saveButtonOutlet.isEnabled = false
-            }
     }
     }
    
@@ -41,8 +44,8 @@ class ViewControllerNewImage:UIViewController {
         textFieldDescription.delegate = self
         textFieldDescription.text = Edit.shared.startMessage(changes: addOrEdit, tag: currentTag)
         textFieldText = Edit.shared.startMessage(changes: addOrEdit, tag: currentTag)
-        imageOutlet.image = UIImage(named: "image")
-        
+        newImageOutlet.image = UIImage(named: "image")
+        saveButtonOutlet.isEnabled = false
     }
     @IBAction func cancelButton(_ sender: UIButton) {
         self.dismiss(animated: true,completion: nil)    }
@@ -68,31 +71,41 @@ class ViewControllerNewImage:UIViewController {
       
         switch addOrEdit {
         case .add:
-            let data = imageOutlet.image!.pngData()
+            let data = newImageOutlet.image!.pngData()
                    
                    let photo = PhotoWrapper(createDate: currentDate(), message: textFieldText, picture: data!)
                    
                  try?  PhotoPersistenceManager.manager.savePhoto(photo: photo)
                    print("saving")
         case .edit:
-        let photoData = imageOutlet.image!.pngData()
-      var newPhoto =  try? PhotoPersistenceManager.manager.editFunction(tag: currentTag)
+          
+            var newPhoto: PhotoWrapper!
+            do { try newPhoto =  PhotoPersistenceManager.manager.editFunction(tag: currentTag)
+                print("photo is okay")
+            } catch {
+                print(error)
+            }
+            if let realphoto = newImageOutlet.image?.pngData() {
+                newPhoto.picture = realphoto
+            } else {
+                print("image is wrong")
+            }
+      
             
-        newPhoto?.message = textFieldText
-        newPhoto?.picture = photoData!
-        
-//        try? PhotoPersistenceManager.manager.deleteFunction(withID: PhotoPersistenceManager.manager.getPhoto()[currentTag].createDate)
+        newPhoto.message = textFieldText
+
    
-        let intitalVC = storyboard?.instantiateViewController(identifier: "InitialPhotoViewController") as! InitialPhotoViewController
+      
         
-       var photo = try? PhotoPersistenceManager.manager.getPhoto()
-        photo?.insert(newPhoto!, at: currentTag )
-        photo?.remove(at: currentTag + 1)
+       passingInfoPhotos.insert(newPhoto, at: currentTag)
+       passingInfoPhotos.remove(at: currentTag + 1)
+        
+        
+        do{ try PhotoPersistenceManager.manager.replaceAllFunction(newPhoto: passingInfoPhotos) } catch { print(error)}
         
             
        
             
-        intitalVC.photos = photo!
             
        
         default:
@@ -113,7 +126,7 @@ extension ViewControllerNewImage: UIImagePickerControllerDelegate, UINavigationC
             //couldn't get image :(
             return
         }
-        imageOutlet.image = image
+        newImageOutlet.image = image
         
         dismiss(animated: true, completion: nil)
         
@@ -124,10 +137,11 @@ extension ViewControllerNewImage: UIImagePickerControllerDelegate, UINavigationC
 }
 extension ViewControllerNewImage:UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textFieldDescription.resignFirstResponder()
 
         textFieldText = textField.text
-
         return true
 }
+   
   
 }
