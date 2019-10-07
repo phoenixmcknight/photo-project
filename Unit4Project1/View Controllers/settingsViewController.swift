@@ -20,6 +20,13 @@ class setttingsViewController:UIViewController {
    
     @IBOutlet weak var UISwitchOutlet: UISwitch!
     
+    var scrollingDirection:String! {
+        if UserDefaultsWrapper.shared.getDirection() != nil {
+            return UserDefaultsWrapper.shared.getDirection()
+        } else {
+            return "vertical"
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         if UserDefaultsWrapper.shared.getDarkModeBool() == true {
@@ -32,7 +39,18 @@ class setttingsViewController:UIViewController {
         setUp()
     }
         
-    
+   
+    @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
+        
+        if sender.selectedSegmentIndex == 0 {
+            UserDefaultsWrapper.shared.store(directionString: "vertical")
+            scrollingSegmentControll.selectedSegmentIndex = 0
+        } else {
+            UserDefaultsWrapper.shared.store(directionString: "horizontal")
+            scrollingSegmentControll.selectedSegmentIndex = 1
+
+    }
+    }
     
     
     @IBAction func darkModeSwitch(_ sender: UISwitch) {
@@ -70,6 +88,6 @@ class setttingsViewController:UIViewController {
 }
     func setUp() {
         darkModeIntroLabel.text = "Hit the switch to activate/turn off Dark Mode"
-        
+        scrollingSegmentControll.selectedSegmentIndex = ScrollingSettings.scrollingNumber(direction: scrollingDirection)
     }
 }

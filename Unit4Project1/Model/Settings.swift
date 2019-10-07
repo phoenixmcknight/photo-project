@@ -14,3 +14,17 @@ enum DarkModeOnOrOff {
     case off
 }
 
+struct ScrollingSettings {
+
+static func scrollingNumber(direction:String) -> Int {
+   
+    switch direction {
+    case "horizontal":
+        return 1
+    case "vertical":
+        return 0
+    default:
+        return -1
+    }
+}
+}

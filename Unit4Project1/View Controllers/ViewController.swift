@@ -20,7 +20,13 @@ class InitialPhotoViewController: UIViewController {
         }
     }
    
-
+    var direction: String! {
+        if UserDefaultsWrapper.shared.getDirection() != nil {
+        return UserDefaultsWrapper.shared.getDirection()
+        } else {
+            return "vertical"
+        }
+    }
     
     var photos = [PhotoWrapper]() {
         didSet {
@@ -32,6 +38,7 @@ class InitialPhotoViewController: UIViewController {
         super.viewDidLoad()
         setUP()
         navigationItem.title = "Photos"
+       
         // Do any additional setup after loading the view.
     }
     
@@ -42,6 +49,9 @@ class InitialPhotoViewController: UIViewController {
         if UserDefaultsWrapper.shared.getDarkModeBool() != nil {
         darkModeIsOn = UserDefaultsWrapper.shared.getDarkModeBool()
         }
+        
+       willRotateToInterfaceOrientation(direction: direction)
+        
         collectionViewOutlet.reloadData()
         
     }
@@ -131,10 +141,20 @@ extension InitialPhotoViewController: UICollectionViewDelegate,UICollectionViewD
      return   colors.createRGBColor()
     }
     
-//    func flowLayout() {
-//        if let flowLayout = collectionViewOutlet.layout as? UICollectionViewFlowLayout { flowLayout.scrollDirection = .horizontal }
-//    }
-   
+     func willRotateToInterfaceOrientation(direction: String) {
+
+        let layout = self.collectionViewOutlet.collectionViewLayout as! UICollectionViewFlowLayout
+
+        
+        if direction == "vertical" {
+            layout.scrollDirection = UICollectionView.ScrollDirection.vertical
+        }
+        else{
+            layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
+            
+        }
+
+    }
 }
 extension InitialPhotoViewController:InitialViewControllerCollectionViewCellCellDelegate {
     func actionSheet(tag: Int) {

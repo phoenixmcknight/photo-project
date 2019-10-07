@@ -18,7 +18,13 @@ struct UserDefaultsWrapper {
     func getDarkModeBool() -> Bool? {
       return  UserDefaults.standard.value(forKeyPath: darkModeOn) as? Bool
     }
+    func store(directionString:String) {
+        UserDefaults.standard.set(directionString, forKey: direction)
+    }
+    func getDirection() -> String? {
+        UserDefaults.standard.value(forKey: direction) as? String
+    }
     
-    
+    private let direction = "direction"
     private let darkModeOn = "darkModeOn"
 }

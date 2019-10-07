@@ -294,9 +294,12 @@
                                                     <constraint firstAttribute="height" constant="30" id="I1D-Rn-oYh"/>
                                                 </constraints>
                                                 <segments>
-                                                    <segment title="Horizontal Scrolling"/>
                                                     <segment title="Vertical Scrolling"/>
+                                                    <segment title="Horizontal Scrolling"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="segmentedControlAction:" destination="shV-pW-Mbb" eventType="valueChanged" id="bCF-me-uRs"/>
+                                                </connections>
                                             </segmentedControl>
                                         </subviews>
                                     </stackView>
