@@ -34,20 +34,20 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="XId-YP-G61">
-                                                    <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                                                    <rect key="frame" x="15" y="0.0" width="220" height="250"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="BFu-bN-YtF">
-                                                            <rect key="frame" x="0.0" y="0.0" width="250" height="154"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="220" height="154"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k6b-8N-gmU">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="250" height="115"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="220" height="115"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="125" id="6pZ-UC-kX0"/>
                                                                         <constraint firstAttribute="width" constant="250" id="SF2-4u-kZH"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfk-7M-SdC">
-                                                                    <rect key="frame" x="170" y="134" width="80" height="20"/>
+                                                                    <rect key="frame" x="140" y="134" width="80" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="Uam-eB-dvk"/>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="Vs3-Dn-gUW"/>
@@ -94,8 +94,8 @@
                                             <constraints>
                                                 <constraint firstItem="XId-YP-G61" firstAttribute="top" secondItem="0ag-Z4-HDh" secondAttribute="top" id="7gV-Le-Nm6"/>
                                                 <constraint firstAttribute="bottom" secondItem="XId-YP-G61" secondAttribute="bottom" id="I2x-v9-QcJ"/>
-                                                <constraint firstAttribute="trailing" secondItem="XId-YP-G61" secondAttribute="trailing" id="agP-ha-uXx"/>
-                                                <constraint firstItem="XId-YP-G61" firstAttribute="leading" secondItem="0ag-Z4-HDh" secondAttribute="leading" id="b6a-FQ-snG"/>
+                                                <constraint firstAttribute="trailing" secondItem="XId-YP-G61" secondAttribute="trailing" constant="15" id="agP-ha-uXx"/>
+                                                <constraint firstItem="XId-YP-G61" firstAttribute="leading" secondItem="0ag-Z4-HDh" secondAttribute="leading" constant="15" id="b6a-FQ-snG"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="250" height="250"/>
