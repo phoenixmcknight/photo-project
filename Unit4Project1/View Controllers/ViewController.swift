@@ -13,6 +13,15 @@ class InitialPhotoViewController: UIViewController {
    // add button fuction random color
     @IBOutlet  var collectionViewOutlet: UICollectionView!
    var colors = RGBValue()
+    
+     var darkModeIsOn:Bool? {
+        didSet {
+            self.darkModeIsOn! ? darkModeOn() : darkModeOff()
+        }
+    }
+   
+
+    
     var photos = [PhotoWrapper]() {
         didSet {
             collectionViewOutlet.reloadData()
@@ -22,7 +31,6 @@ class InitialPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUP()
-        //collectionViewOutlet.reloadData()
         navigationItem.title = "Photos"
         // Do any additional setup after loading the view.
     }
@@ -31,8 +39,11 @@ class InitialPhotoViewController: UIViewController {
             super.viewWillAppear(animated)
         loadPhotos()
         
+        if UserDefaultsWrapper.shared.getDarkModeBool() != nil {
+        darkModeIsOn = UserDefaultsWrapper.shared.getDarkModeBool()
+        }
         collectionViewOutlet.reloadData()
-        print("loading")
+        
     }
     private func loadPhotos() {
            do {
@@ -46,7 +57,16 @@ class InitialPhotoViewController: UIViewController {
                print(error)
            }
        }
-
+    
+    
+    @IBAction func settingsButton(_ sender: UIBarButtonItem) {
+   
+        let settingsVC = storyboard?.instantiateViewController(identifier: "setttingsViewController") as! setttingsViewController
+        
+        navigationController?.pushViewController(settingsVC, animated: true)
+        
+    }
+    
     @IBAction func actionButton(_ sender: UIBarButtonItem) {
         
             if  let newImageStoryBoard = storyboard?.instantiateViewController(identifier: "ViewControllerNewImage") as? ViewControllerNewImage {
@@ -64,6 +84,13 @@ class InitialPhotoViewController: UIViewController {
         collectionViewOutlet.delegate = self
         
         collectionViewOutlet.dataSource = self
+    }
+    func darkModeOn() {
+        collectionViewOutlet.backgroundColor = .black
+    }
+    func darkModeOff() {
+        collectionViewOutlet.backgroundColor = .opaqueSeparator
+       
     }
     
 }
@@ -87,6 +114,15 @@ extension InitialPhotoViewController: UICollectionViewDelegate,UICollectionViewD
         cell.descriptionLabel.text = photosPath.message
         cell.backgroundColor = colorGenerator()
         cell.delegate = self
+       
+        cell.changeColorOfBorderCellFunction = {
+            cell.layer.borderColor = UIColor.white.cgColor
+            cell.layer.shadowColor = UIColor.white.cgColor
+        }
+        
+        if darkModeIsOn == true {
+            cell.changeColorOfBorderCellFunction()
+        }
         return cell
     }
     func colorGenerator() -> UIColor{
@@ -95,6 +131,9 @@ extension InitialPhotoViewController: UICollectionViewDelegate,UICollectionViewD
      return   colors.createRGBColor()
     }
     
+//    func flowLayout() {
+//        if let flowLayout = collectionViewOutlet.layout as? UICollectionViewFlowLayout { flowLayout.scrollDirection = .horizontal }
+//    }
    
 }
 extension InitialPhotoViewController:InitialViewControllerCollectionViewCellCellDelegate {
@@ -131,6 +170,7 @@ extension InitialPhotoViewController:InitialViewControllerCollectionViewCellCell
         optionmenu.addAction(editAction)
         self.present(optionmenu, animated: true, completion: nil)
     }
-
+    
 
 }
+

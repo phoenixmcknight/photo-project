@@ -25,12 +25,6 @@ class ViewControllerNewImage:UIViewController {
     
     var textFieldText:String! {
         didSet {
-           
-//            if self.textFieldText != "" && self.textFieldText != nil {
-//            saveButtonOutlet.isEnabled = true
-//            } else {
-//                saveButtonOutlet.isEnabled = false
-//            }
             saveButtonOutlet.isEnabled = true
     }
     }

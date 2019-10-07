@@ -11,6 +11,8 @@
 		69182D912347DF0A00548172 /* cellFormating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69182D902347DF0A00548172 /* cellFormating.swift */; };
 		69182D932347E66500548172 /* ChangesEditOrAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69182D922347E66500548172 /* ChangesEditOrAdd.swift */; };
 		69182D95234AF36300548172 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69182D94234AF36300548172 /* UserDefaults.swift */; };
+		69182D97234BB90F00548172 /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69182D96234BB90F00548172 /* settingsViewController.swift */; };
+		69182D99234BBBFE00548172 /* darkModeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69182D98234BBBFE00548172 /* darkModeSettings.swift */; };
 		692A7C3F23468EC900DF41B9 /* PhotoJournalWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A7C3E23468EC900DF41B9 /* PhotoJournalWrapper.swift */; };
 		692A7C412346900000DF41B9 /* ViewControllerNewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A7C402346900000DF41B9 /* ViewControllerNewImage.swift */; };
 		692A7C43234785F800DF41B9 /* ImagePersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A7C42234785F800DF41B9 /* ImagePersistenceHelper.swift */; };
@@ -47,6 +49,8 @@
 		69182D902347DF0A00548172 /* cellFormating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cellFormating.swift; sourceTree = "<group>"; };
 		69182D922347E66500548172 /* ChangesEditOrAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangesEditOrAdd.swift; sourceTree = "<group>"; };
 		69182D94234AF36300548172 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		69182D96234BB90F00548172 /* settingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
+		69182D98234BBBFE00548172 /* darkModeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = darkModeSettings.swift; sourceTree = "<group>"; };
 		692A7C3E23468EC900DF41B9 /* PhotoJournalWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoJournalWrapper.swift; path = Unit4Project1/Persistence/PhotoJournalWrapper.swift; sourceTree = SOURCE_ROOT; };
 		692A7C402346900000DF41B9 /* ViewControllerNewImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerNewImage.swift; path = Unit4Project1/Persistence/ViewControllerNewImage.swift; sourceTree = SOURCE_ROOT; };
 		692A7C42234785F800DF41B9 /* ImagePersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePersistenceHelper.swift; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 				69182D8C2347D69F00548172 /* RGBColors.swift */,
 				69182D902347DF0A00548172 /* cellFormating.swift */,
 				69182D922347E66500548172 /* ChangesEditOrAdd.swift */,
+				69182D98234BBBFE00548172 /* darkModeSettings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -108,6 +113,7 @@
 			children = (
 				69FDEA4C233EA1490092C5B4 /* ViewController.swift */,
 				693D1B212346557E0008E9A6 /* Detail View Controllers */,
+				69182D96234BB90F00548172 /* settingsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -339,9 +345,11 @@
 				692A7C412346900000DF41B9 /* ViewControllerNewImage.swift in Sources */,
 				69FDEA4B233EA1490092C5B4 /* AppDelegate.swift in Sources */,
 				692A7C43234785F800DF41B9 /* ImagePersistenceHelper.swift in Sources */,
+				69182D99234BBBFE00548172 /* darkModeSettings.swift in Sources */,
 				69182D912347DF0A00548172 /* cellFormating.swift in Sources */,
 				692A7C472347937B00DF41B9 /* InitialViewControllerCollectionViewCell.swift in Sources */,
 				69182D8D2347D69F00548172 /* RGBColors.swift in Sources */,
+				69182D97234BB90F00548172 /* settingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

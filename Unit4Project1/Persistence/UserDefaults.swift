@@ -12,10 +12,13 @@ import Foundation
 struct UserDefaultsWrapper {
     static let shared = UserDefaultsWrapper()
     
-    func store(setMessage:String) {
-        UserDefaults.standard.set(setMessage, forKey: message)
+    func store(isDarkModeOn:Bool) {
+        UserDefaults.standard.set(isDarkModeOn, forKey: darkModeOn)
+    }
+    func getDarkModeBool() -> Bool? {
+      return  UserDefaults.standard.value(forKeyPath: darkModeOn) as? Bool
     }
     
     
-    private let message = "message"
+    private let darkModeOn = "darkModeOn"
 }

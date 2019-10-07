@@ -26,6 +26,7 @@ class InitialViewControllerCollectionViewCell: UICollectionViewCell {
     
     weak var delegate:InitialViewControllerCollectionViewCellCellDelegate?
     
+     var changeColorOfBorderCellFunction: (()->()) = {}
     
     @IBOutlet weak var buttonOutlet: UIButton!
     
