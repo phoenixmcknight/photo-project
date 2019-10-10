@@ -10,9 +10,9 @@ import UIKit
 
 class InitialPhotoViewController: UIViewController {
     
-//MARK: Outlets
+    //MARK: Outlets
     @IBOutlet  var collectionViewOutlet: UICollectionView!
-   //MARK: Variables
+    //MARK: Variables
     var colors = RGBValue()
     var darkModeIsOn:Bool? {
         didSet {
@@ -125,7 +125,7 @@ extension InitialPhotoViewController: UICollectionViewDelegate,UICollectionViewD
         colors = RGBValue()
         return  colors.createRGBColor()
     }
-
+    
     func willRotateToInterfaceOrientation(direction: String) {
         
         let layout = self.collectionViewOutlet.collectionViewLayout as! UICollectionViewFlowLayout
@@ -163,7 +163,7 @@ extension InitialPhotoViewController:InitialViewControllerCollectionViewCellCell
                 newImageStoryBoard.currentTag = tag
                 newImageStoryBoard.passingInfoPhotos = self.photos
                 newImageStoryBoard.modalPresentationStyle = .currentContext
-        
+                
                 self.present(newImageStoryBoard, animated: true,completion: nil)
             }
         }

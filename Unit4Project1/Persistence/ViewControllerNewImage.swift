@@ -47,7 +47,7 @@ class ViewControllerNewImage:UIViewController {
         case .add:
             let data = newImageOutlet.image!.pngData()
             let photo = PhotoWrapper(createDate: currentDate(), message: textFieldText, picture: data!)
-          try?  PhotoPersistenceManager.manager.savePhoto(photo: photo)
+            try?  PhotoPersistenceManager.manager.savePhoto(photo: photo)
         case .edit:
             var newPhoto: PhotoWrapper!
             do { try newPhoto =  PhotoPersistenceManager.manager.editFunction(tag: currentTag)
@@ -60,18 +60,18 @@ class ViewControllerNewImage:UIViewController {
                 newPhoto.picture = (UIImage(named: "image")?.pngData())!
             }
             newPhoto.message = textFieldText != "" ? textFieldText : "No description"
-           
+            
             passingInfoPhotos.insert(newPhoto, at: currentTag)
             passingInfoPhotos.remove(at: currentTag + 1)
             
             do{ try PhotoPersistenceManager.manager.replaceAllFunction(newPhoto: passingInfoPhotos) } catch { print(error)
-                }
+            }
         default:
             return
         }
         dismiss(animated: true, completion: nil)
     }
-//MARK:Functions
+    //MARK:Functions
     func loadTextDescription() {
         textFieldDescription.text = Edit.shared.startMessage(changes: addOrEdit, tag: currentTag)
         textFieldText = Edit.shared.startMessage(changes: addOrEdit, tag: currentTag)

@@ -58,7 +58,7 @@ class setttingsViewController:UIViewController {
             UISwitchOutlet.isOn = false
         }
     }
-//MARK: Functions
+    //MARK: Functions
     func setUpDarkModeBasedOnUserDefault() {
         if UserDefaultsWrapper.shared.getDarkModeBool() == true {
             UISwitchOutlet.isOn = true
