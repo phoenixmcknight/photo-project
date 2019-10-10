@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class ViewControllerNewImage:UIViewController {
-   
+    
     @IBOutlet weak var textFieldDescription: UITextField!
     
     @IBOutlet weak var newImageOutlet: UIImageView!
@@ -26,53 +26,30 @@ class ViewControllerNewImage:UIViewController {
     var textFieldText:String! {
         didSet {
             saveButtonOutlet.isEnabled = true
+        }
     }
-    }
-   
-   
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         saveButtonOutlet.isEnabled = false
+        loadDefaultImage()
+        loadTextDescription()
         textFieldDescription.delegate = self
-        textFieldDescription.text = Edit.shared.startMessage(changes: addOrEdit, tag: currentTag)
-        textFieldText = Edit.shared.startMessage(changes: addOrEdit, tag: currentTag)
-        newImageOutlet.image = UIImage(named: "image")
-        saveButtonOutlet.isEnabled = false
     }
-    @IBAction func cancelButton(_ sender: UIButton) {
-        self.dismiss(animated: true,completion: nil)    }
-
-    @IBAction func photoLibrary(_ sender: UIBarButtonItem) {
-   let imagePicker = UIImagePickerController()
-
-                   imagePicker.sourceType = .photoLibrary
-                   imagePicker.allowsEditing = true
-                   imagePicker.delegate = self
-              self.present(imagePicker,animated: true,completion: nil)
-        
     
-    }
-    private func currentDate()->String{
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd/yyyy HH:mm:ss"
-        return formatter.string(from: date)
+    @IBAction func cancelButton(_ sender: UIButton) {
+        self.dismiss(animated: true,completion: nil)
     }
     
     @IBAction func saveButton(_ sender: UIButton) {
-      
+        
         switch addOrEdit {
         case .add:
             let data = newImageOutlet.image!.pngData()
-                   
-                   let photo = PhotoWrapper(createDate: currentDate(), message: textFieldText, picture: data!)
-                   
-                 try?  PhotoPersistenceManager.manager.savePhoto(photo: photo)
-                   print("saving")
+            let photo = PhotoWrapper(createDate: currentDate(), message: textFieldText, picture: data!)
+          try?  PhotoPersistenceManager.manager.savePhoto(photo: photo)
+            print("saving")
         case .edit:
-          
             var newPhoto: PhotoWrapper!
             do { try newPhoto =  PhotoPersistenceManager.manager.editFunction(tag: currentTag)
                 print("photo is okay")
@@ -84,36 +61,43 @@ class ViewControllerNewImage:UIViewController {
             } else {
                 print("image is wrong")
             }
-      
+            newPhoto.message = textFieldText != "" ? textFieldText : "No description"
+           
+            passingInfoPhotos.insert(newPhoto, at: currentTag)
+            passingInfoPhotos.remove(at: currentTag + 1)
             
-        newPhoto.message = textFieldText
-
-   
-      
-        
-       passingInfoPhotos.insert(newPhoto, at: currentTag)
-       passingInfoPhotos.remove(at: currentTag + 1)
-        
-        
-        do{ try PhotoPersistenceManager.manager.replaceAllFunction(newPhoto: passingInfoPhotos) } catch { print(error)}
-        
-            
-       
-            
-            
-       
+            do{ try PhotoPersistenceManager.manager.replaceAllFunction(newPhoto: passingInfoPhotos) } catch { print(error)
+                }
         default:
-           print("failed")
+            return
         }
-        
-       
         dismiss(animated: true, completion: nil)
     }
+
+    func loadTextDescription() {
+        textFieldDescription.text = Edit.shared.startMessage(changes: addOrEdit, tag: currentTag)
+        textFieldText = Edit.shared.startMessage(changes: addOrEdit, tag: currentTag)
+    }
     
-    
-    
+    func loadDefaultImage() {
+        switch addOrEdit {
+        case .edit:
+            newImageOutlet.image = UIImage(data: passingInfoPhotos[currentTag].picture)
+        case .add:
+            newImageOutlet.image = UIImage(named: "image")
+            
+        default:
+            return
+        }
+    }
+    private func currentDate()->String{
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy HH:mm:ss"
+        return formatter.string(from: date)
+    }
 }
-    
+
 extension ViewControllerNewImage: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.originalImage] as? UIImage else {
@@ -121,21 +105,17 @@ extension ViewControllerNewImage: UIImagePickerControllerDelegate, UINavigationC
             return
         }
         newImageOutlet.image = image
-        
         dismiss(animated: true, completion: nil)
-        
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion:nil)
-}
+    }
 }
 extension ViewControllerNewImage:UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textFieldDescription.resignFirstResponder()
-
+        
         textFieldText = textField.text
         return true
-}
-   
-  
+    }
 }
