@@ -9,68 +9,37 @@
 import UIKit
 
 class InitialPhotoViewController: UIViewController {
-
-   // add button fuction random color
-    @IBOutlet  var collectionViewOutlet: UICollectionView!
-   var colors = RGBValue()
     
-     var darkModeIsOn:Bool? {
+    // add button fuction random color
+    @IBOutlet  var collectionViewOutlet: UICollectionView!
+    var colors = RGBValue()
+    var darkModeIsOn:Bool? {
         didSet {
             self.darkModeIsOn! ? darkModeOn() : darkModeOff()
         }
     }
-   
     var direction: String! {
         if UserDefaultsWrapper.shared.getDirection() != nil {
-        return UserDefaultsWrapper.shared.getDirection()
+            return UserDefaultsWrapper.shared.getDirection()
         } else {
             return "vertical"
         }
     }
-    
     var photos = [PhotoWrapper]() {
         didSet {
             collectionViewOutlet.reloadData()
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUP()
-        navigationItem.title = "Photos"
-       
-        // Do any additional setup after loading the view.
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
+        super.viewWillAppear(animated)
         loadPhotos()
-        
-        if UserDefaultsWrapper.shared.getDarkModeBool() != nil {
-        darkModeIsOn = UserDefaultsWrapper.shared.getDarkModeBool()
-        }
-        
-       willRotateToInterfaceOrientation(direction: direction)
-        
-        collectionViewOutlet.reloadData()
+        setUP()
+        setUpDarkMode()
         
     }
-    private func loadPhotos() {
-           do {
-               photos = try
-
-                   PhotoPersistenceManager.manager.getPhoto()
-               collectionViewOutlet.reloadData()
-               print("loading")
-
-           } catch {
-               print(error)
-           }
-       }
-    
     
     @IBAction func settingsButton(_ sender: UIBarButtonItem) {
-   
+        
         let settingsVC = storyboard?.instantiateViewController(identifier: "setttingsViewController") as! setttingsViewController
         
         navigationController?.pushViewController(settingsVC, animated: true)
@@ -79,28 +48,49 @@ class InitialPhotoViewController: UIViewController {
     
     @IBAction func actionButton(_ sender: UIBarButtonItem) {
         
-            if  let newImageStoryBoard = storyboard?.instantiateViewController(identifier: "ViewControllerNewImage") as? ViewControllerNewImage {
-                
-                newImageStoryBoard.addOrEdit = Changes.add
-                newImageStoryBoard.modalPresentationStyle = .currentContext
-                
-                self.present(newImageStoryBoard, animated: true,completion: nil)
-            }
+        if  let newImageStoryBoard = storyboard?.instantiateViewController(identifier: "ViewControllerNewImage") as? ViewControllerNewImage {
+            
+            newImageStoryBoard.addOrEdit = Changes.add
+            newImageStoryBoard.modalPresentationStyle = .currentContext
+            
+            self.present(newImageStoryBoard, animated: true,completion: nil)
         }
-        var pickImageFunctionColors: (()->()) = {}
-
+    }
+    
+    private func loadPhotos() {
+        do {
+            photos = try
+                
+                PhotoPersistenceManager.manager.getPhoto()
+            collectionViewOutlet.reloadData()
+        } catch {
+            print(error)
+        }
+    }
     
     func setUP() {
         collectionViewOutlet.delegate = self
         
         collectionViewOutlet.dataSource = self
+        
+        willRotateToInterfaceOrientation(direction: direction)
+        
+        collectionViewOutlet.reloadData()
+        
+        navigationItem.title = "Photos"
+    }
+    
+    func setUpDarkMode() {
+        if UserDefaultsWrapper.shared.getDarkModeBool() != nil {
+            darkModeIsOn = UserDefaultsWrapper.shared.getDarkModeBool()
+        }
     }
     func darkModeOn() {
         collectionViewOutlet.backgroundColor = .black
     }
     func darkModeOff() {
         collectionViewOutlet.backgroundColor = .opaqueSeparator
-       
+        
     }
     
 }
@@ -110,41 +100,37 @@ extension InitialPhotoViewController: UICollectionViewDelegate,UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       
+        
         let photosPath = photos[indexPath.item]
         let cell = collectionViewOutlet.dequeueReusableCell(withReuseIdentifier: "item", for: indexPath) as! InitialViewControllerCollectionViewCell
-      
+        
         cell.buttonOutlet.tag = indexPath.item
-        
-        
-        
-  cell.InititalViewControllerImage.image = UIImage(data: photosPath.picture)
+        cell.InititalViewControllerImage.image = UIImage(data: photosPath.picture)
         CustomLayer.shared.createCustomlayer(layer: cell.layer)
         cell.dateCreatedLabel.text = photosPath.createDate
         cell.descriptionLabel.text = photosPath.message
         cell.backgroundColor = colorGenerator()
         cell.delegate = self
-       
         cell.changeColorOfBorderCellFunction = {
             cell.layer.borderColor = UIColor.white.cgColor
             cell.layer.shadowColor = UIColor.white.cgColor
         }
-        
         if darkModeIsOn == true {
             cell.changeColorOfBorderCellFunction()
         }
         return cell
     }
     func colorGenerator() -> UIColor{
-       
+        
         colors = RGBValue()
-     return   colors.createRGBColor()
+        return   colors.createRGBColor()
     }
     
-     func willRotateToInterfaceOrientation(direction: String) {
-
+    func willRotateToInterfaceOrientation(direction: String) {
+        
         let layout = self.collectionViewOutlet.collectionViewLayout as! UICollectionViewFlowLayout
-
+        
+        layout.minimumInteritemSpacing = 10000
         
         if direction == "vertical" {
             layout.scrollDirection = UICollectionView.ScrollDirection.vertical
@@ -153,19 +139,19 @@ extension InitialPhotoViewController: UICollectionViewDelegate,UICollectionViewD
             layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
             
         }
-
+        
     }
 }
 extension InitialPhotoViewController:InitialViewControllerCollectionViewCellCellDelegate {
     func actionSheet(tag: Int) {
         let optionmenu = UIAlertController(title: "Options", message: "Choose option", preferredStyle: .actionSheet)
-
+        
         let deleteFilmAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
             let photo = self.photos[tag]
-         
+            
             self.photos.remove(at: tag)
-
-         try?   PhotoPersistenceManager.manager.deleteFunction(withID: photo.createDate)
+            
+            try?   PhotoPersistenceManager.manager.deleteFunction(withID: photo.createDate)
         }
         let shareAction = UIAlertAction(title: "Share", style: .default) { (action) in
             let image = UIImage(data: self.photos[tag].picture)
@@ -191,6 +177,7 @@ extension InitialPhotoViewController:InitialViewControllerCollectionViewCellCell
         self.present(optionmenu, animated: true, completion: nil)
     }
     
-
+    
 }
+
 

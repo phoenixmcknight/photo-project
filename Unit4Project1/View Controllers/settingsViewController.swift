@@ -11,13 +11,10 @@ import Foundation
 import UIKit
 
 class setttingsViewController:UIViewController {
-   
-    @IBOutlet weak var darkModeIntroLabel: UILabel!
     
+    @IBOutlet weak var darkModeIntroLabel: UILabel!
     @IBOutlet weak var darkModeOnOrOff: UILabel!
     @IBOutlet weak var scrollingSegmentControll: UISegmentedControl!
-    
-   
     @IBOutlet weak var UISwitchOutlet: UISwitch!
     
     var scrollingDirection:String! {
@@ -29,17 +26,11 @@ class setttingsViewController:UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if UserDefaultsWrapper.shared.getDarkModeBool() == true {
-        UISwitchOutlet.isOn = true
-            darkModeOn()
-        } else if UserDefaultsWrapper.shared.getDarkModeBool() == false {
-            UISwitchOutlet.isOn = false
-            darkModeOff()
-        }
+        setUpDarkModeBasedOnUserDefault()
         setUp()
     }
-        
-   
+    
+    
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
         
         if sender.selectedSegmentIndex == 0 {
@@ -48,15 +39,11 @@ class setttingsViewController:UIViewController {
         } else {
             UserDefaultsWrapper.shared.store(directionString: "horizontal")
             scrollingSegmentControll.selectedSegmentIndex = 1
-
-    }
+        }
     }
     
     
     @IBAction func darkModeSwitch(_ sender: UISwitch) {
-    
-
-     
         switch sender.isOn {
         case true:
             UserDefaultsWrapper.shared.store(isDarkModeOn: true)
@@ -68,24 +55,33 @@ class setttingsViewController:UIViewController {
             
             darkModeOff()
             UISwitchOutlet.isOn = false
-
         }
     }
-   
+
+    func setUpDarkModeBasedOnUserDefault() {
+        if UserDefaultsWrapper.shared.getDarkModeBool() == true {
+            UISwitchOutlet.isOn = true
+            darkModeOn()
+        } else if UserDefaultsWrapper.shared.getDarkModeBool() == false {
+            UISwitchOutlet.isOn = false
+            darkModeOff()
+        }
+    }
+    
     func darkModeOn() {
         darkModeIntroLabel.textColor = .white
         view.backgroundColor = .black
         darkModeOnOrOff.text = "Dark Mode is ON"
         darkModeOnOrOff.textColor = .white
         scrollingSegmentControll.backgroundColor = .white
-}
+    }
     func darkModeOff() {
         darkModeIntroLabel.textColor = .black
         view.backgroundColor = .opaqueSeparator
         darkModeOnOrOff.text = "Dark Mode is OFF"
         darkModeOnOrOff.textColor = .black
         scrollingSegmentControll.backgroundColor = .opaqueSeparator
-}
+    }
     func setUp() {
         darkModeIntroLabel.text = "Hit the switch to activate/turn off Dark Mode"
         scrollingSegmentControll.selectedSegmentIndex = ScrollingSettings.scrollingNumber(direction: scrollingDirection)
