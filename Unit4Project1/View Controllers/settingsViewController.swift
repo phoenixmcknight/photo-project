@@ -11,12 +11,13 @@ import Foundation
 import UIKit
 
 class setttingsViewController:UIViewController {
-    
+    //MARK: Outlets
     @IBOutlet weak var darkModeIntroLabel: UILabel!
     @IBOutlet weak var darkModeOnOrOff: UILabel!
     @IBOutlet weak var scrollingSegmentControll: UISegmentedControl!
     @IBOutlet weak var UISwitchOutlet: UISwitch!
     
+    //MARK:Variables
     var scrollingDirection:String! {
         if UserDefaultsWrapper.shared.getDirection() != nil {
             return UserDefaultsWrapper.shared.getDirection()
@@ -30,7 +31,7 @@ class setttingsViewController:UIViewController {
         setUp()
     }
     
-    
+    //MARK:Actions
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
         
         if sender.selectedSegmentIndex == 0 {
@@ -57,7 +58,7 @@ class setttingsViewController:UIViewController {
             UISwitchOutlet.isOn = false
         }
     }
-
+//MARK: Functions
     func setUpDarkModeBasedOnUserDefault() {
         if UserDefaultsWrapper.shared.getDarkModeBool() == true {
             UISwitchOutlet.isOn = true

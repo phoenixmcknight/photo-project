@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 class ViewControllerNewImage:UIViewController {
-    
+    //MARK: Outlets
     @IBOutlet weak var textFieldDescription: UITextField!
     
     @IBOutlet weak var newImageOutlet: UIImageView!
     
     @IBOutlet weak var saveButtonOutlet: UIButton!
-    
+    //MARK: Variables
     var addOrEdit:Changes!
     
     var currentTag:Int! = 0
@@ -36,7 +36,7 @@ class ViewControllerNewImage:UIViewController {
         loadTextDescription()
         textFieldDescription.delegate = self
     }
-    
+    //MARK: Actions
     @IBAction func cancelButton(_ sender: UIButton) {
         self.dismiss(animated: true,completion: nil)
     }
@@ -48,18 +48,16 @@ class ViewControllerNewImage:UIViewController {
             let data = newImageOutlet.image!.pngData()
             let photo = PhotoWrapper(createDate: currentDate(), message: textFieldText, picture: data!)
           try?  PhotoPersistenceManager.manager.savePhoto(photo: photo)
-            print("saving")
         case .edit:
             var newPhoto: PhotoWrapper!
             do { try newPhoto =  PhotoPersistenceManager.manager.editFunction(tag: currentTag)
-                print("photo is okay")
             } catch {
                 print(error)
             }
             if let realphoto = newImageOutlet.image?.pngData() {
                 newPhoto.picture = realphoto
             } else {
-                print("image is wrong")
+                newPhoto.picture = (UIImage(named: "image")?.pngData())!
             }
             newPhoto.message = textFieldText != "" ? textFieldText : "No description"
            
@@ -73,7 +71,7 @@ class ViewControllerNewImage:UIViewController {
         }
         dismiss(animated: true, completion: nil)
     }
-
+//MARK:Functions
     func loadTextDescription() {
         textFieldDescription.text = Edit.shared.startMessage(changes: addOrEdit, tag: currentTag)
         textFieldText = Edit.shared.startMessage(changes: addOrEdit, tag: currentTag)
@@ -97,7 +95,7 @@ class ViewControllerNewImage:UIViewController {
         return formatter.string(from: date)
     }
 }
-
+//MARK: Extensions
 extension ViewControllerNewImage: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.originalImage] as? UIImage else {

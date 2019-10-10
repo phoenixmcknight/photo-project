@@ -126,13 +126,6 @@
 			path = "Detail View Controllers";
 			sourceTree = "<group>";
 		};
-		693D1B22234655860008E9A6 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		693D1B232346558D0008E9A6 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,7 +170,6 @@
 			children = (
 				693D1B242346559A0008E9A6 /* Views */,
 				693D1B232346558D0008E9A6 /* Persistence */,
-				693D1B22234655860008E9A6 /* Helpers */,
 				693D1B202346556B0008E9A6 /* View Controllers */,
 				693D1B1F2346555D0008E9A6 /* Model */,
 				69FDEA4A233EA1490092C5B4 /* AppDelegate.swift */,

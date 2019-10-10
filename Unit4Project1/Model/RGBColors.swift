@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 struct RGBValue {
+    
     var red = Double.random(in: 0.3...0.6)
     var blue = Double.random(in: 0.3...0.6)
     var green = Double.random(in: 0.3...0.6)

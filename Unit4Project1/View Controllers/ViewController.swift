@@ -10,8 +10,9 @@ import UIKit
 
 class InitialPhotoViewController: UIViewController {
     
-    // add button fuction random color
+//MARK: Outlets
     @IBOutlet  var collectionViewOutlet: UICollectionView!
+   //MARK: Variables
     var colors = RGBValue()
     var darkModeIsOn:Bool? {
         didSet {
@@ -37,7 +38,7 @@ class InitialPhotoViewController: UIViewController {
         setUpDarkMode()
         
     }
-    
+    //MARK: Actions
     @IBAction func settingsButton(_ sender: UIBarButtonItem) {
         
         let settingsVC = storyboard?.instantiateViewController(identifier: "setttingsViewController") as! setttingsViewController
@@ -45,7 +46,6 @@ class InitialPhotoViewController: UIViewController {
         navigationController?.pushViewController(settingsVC, animated: true)
         
     }
-    
     @IBAction func actionButton(_ sender: UIBarButtonItem) {
         
         if  let newImageStoryBoard = storyboard?.instantiateViewController(identifier: "ViewControllerNewImage") as? ViewControllerNewImage {
@@ -56,7 +56,7 @@ class InitialPhotoViewController: UIViewController {
             self.present(newImageStoryBoard, animated: true,completion: nil)
         }
     }
-    
+    //MARK: Functions
     private func loadPhotos() {
         do {
             photos = try
@@ -94,11 +94,11 @@ class InitialPhotoViewController: UIViewController {
     }
     
 }
+//MARK: Extensions
 extension InitialPhotoViewController: UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let photosPath = photos[indexPath.item]
@@ -123,23 +123,21 @@ extension InitialPhotoViewController: UICollectionViewDelegate,UICollectionViewD
     func colorGenerator() -> UIColor{
         
         colors = RGBValue()
-        return   colors.createRGBColor()
+        return  colors.createRGBColor()
     }
-    
+
     func willRotateToInterfaceOrientation(direction: String) {
         
         let layout = self.collectionViewOutlet.collectionViewLayout as! UICollectionViewFlowLayout
         
-        layout.minimumInteritemSpacing = 10000
+        layout.minimumInteritemSpacing = 625
         
         if direction == "vertical" {
             layout.scrollDirection = UICollectionView.ScrollDirection.vertical
         }
         else{
             layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
-            
         }
-        
     }
 }
 extension InitialPhotoViewController:InitialViewControllerCollectionViewCellCellDelegate {
@@ -165,7 +163,7 @@ extension InitialPhotoViewController:InitialViewControllerCollectionViewCellCell
                 newImageStoryBoard.currentTag = tag
                 newImageStoryBoard.passingInfoPhotos = self.photos
                 newImageStoryBoard.modalPresentationStyle = .currentContext
-                
+        
                 self.present(newImageStoryBoard, animated: true,completion: nil)
             }
         }
