@@ -63,7 +63,7 @@ class ViewControllerNewImage:UIViewController {
             
             passingInfoPhotos.insert(newPhoto, at: currentTag)
             passingInfoPhotos.remove(at: currentTag + 1)
-            
+           
             do{ try PhotoPersistenceManager.manager.replaceAllFunction(newPhoto: passingInfoPhotos) } catch { print(error)
             }
         default:
@@ -71,6 +71,7 @@ class ViewControllerNewImage:UIViewController {
         }
         dismiss(animated: true, completion: nil)
     }
+    
     //MARK:Functions
     func loadTextDescription() {
         textFieldDescription.text = Edit.shared.startMessage(changes: addOrEdit, tag: currentTag)
@@ -88,6 +89,16 @@ class ViewControllerNewImage:UIViewController {
             return
         }
     }
+    @IBAction func photoLibrary(_ sender: UIBarButtonItem) {
+      let imagePicker = UIImagePickerController()
+
+                      imagePicker.sourceType = .photoLibrary
+                      imagePicker.allowsEditing = true
+                      imagePicker.delegate = self
+                 self.present(imagePicker,animated: true,completion: nil)
+           
+       
+       }
     private func currentDate()->String{
         let date = Date()
         let formatter = DateFormatter()
